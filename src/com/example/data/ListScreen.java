@@ -53,6 +53,7 @@ public class ListScreen extends Activity {
 		//Log.i("Score check", "Amount: " + scoreCheck());
 		Calendar rightNow = Calendar.getInstance();
 		ParseQuery<ParseObject> query = ParseQuery.getQuery("Posts");
+		query.orderByDescending("Score");
 		query.setLimit(10);//CHANGED!
 		query.whereEqualTo("Day",rightNow.get(Calendar.DAY_OF_YEAR));
 		query.whereEqualTo("Year", rightNow.get(Calendar.YEAR));
