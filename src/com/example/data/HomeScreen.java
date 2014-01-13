@@ -15,6 +15,7 @@ import android.widget.Button;
 
 public class HomeScreen extends Activity {
 
+	public boolean loggedIn = false;
 	//public static ParseObject mPosts = new ParseObject("Posts");
 
 	@Override
@@ -60,6 +61,11 @@ public class HomeScreen extends Activity {
 		return true;
 	}
 	
+	
+	public boolean isLoggedIn()
+	{
+		return loggedIn;
+	}
 	/*
 	public static ParseObject getObject(){
 		return mPosts;

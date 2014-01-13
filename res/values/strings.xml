@@ -7,5 +7,6 @@
     <string name="title_activity_home_screen">HomeScreen</string>
     <string name="title_activity_list_screen">ListScreen</string>
     <string name="title_activity_idea_screen">IdeaScreen</string>
+    <string name="title_activity_login_screen">LoginScreen</string>
 
 </resources>
