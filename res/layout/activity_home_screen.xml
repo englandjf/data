@@ -12,8 +12,9 @@
         android:id="@+id/postScreen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/listScreen"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
+        android:layout_alignRight="@+id/listScreen"
         android:layout_marginTop="64dp"
         android:text="New Post" />
 
@@ -21,8 +22,29 @@
         android:id="@+id/listScreen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/postScreen"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
+        android:layout_marginTop="25dp"
         android:text="View Posts" />
+
+    <Button
+        android:id="@+id/loginScreen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/listScreen"
+        android:layout_alignRight="@+id/listScreen"
+        android:layout_below="@+id/listScreen"
+        android:layout_marginTop="25dp"
+        android:text="Login" />
+
+    <Button
+        android:id="@+id/newAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/loginScreen"
+        android:layout_alignRight="@+id/loginScreen"
+        android:layout_below="@+id/loginScreen"
+        android:layout_marginTop="25dp"
+        android:text="Create Account" />
 
 </RelativeLayout>

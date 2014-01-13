@@ -41,6 +41,24 @@ public class HomeScreen extends Activity {
 				
 			}
 		});
+		final Button loginScreen = (Button) findViewById(R.id.loginScreen);
+		loginScreen.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				toLoginScreen();
+				
+			}
+		});
+		final Button newAccount = (Button) findViewById(R.id.newAccount);
+		newAccount.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				toAccountScreen();
+				
+			}
+		});
 	}
 	
 	public void toPostScreen()
@@ -52,6 +70,16 @@ public class HomeScreen extends Activity {
 	public void toListScreen()
 	{
 		Intent intent = new Intent(this,ListScreen.class);
+		startActivity(intent);
+	}
+	
+	public void toLoginScreen(){
+		Intent intent = new Intent(this,LoginScreen.class);
+		startActivity(intent);
+	}
+	
+	public void toAccountScreen(){
+		Intent intent = new Intent(this,NewAccount.class);
 		startActivity(intent);
 	}
 	@Override

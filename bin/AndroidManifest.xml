@@ -41,6 +41,10 @@
             android:name="com.example.data.LoginScreen"
             android:label="@string/title_activity_login_screen" >
         </activity>
+        <activity
+            android:name="com.example.data.NewAccount"
+            android:label="@string/title_activity_new_account" >
+        </activity>
     </application>
 
 </manifest>

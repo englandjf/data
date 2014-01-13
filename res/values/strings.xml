@@ -8,5 +8,6 @@
     <string name="title_activity_list_screen">ListScreen</string>
     <string name="title_activity_idea_screen">IdeaScreen</string>
     <string name="title_activity_login_screen">LoginScreen</string>
+    <string name="title_activity_new_account">NewAccount</string>
 
 </resources>
