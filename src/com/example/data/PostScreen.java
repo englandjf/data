@@ -32,7 +32,7 @@ public class PostScreen extends Activity  {
 		final EditText mtitleText = (EditText) findViewById(R.id.title);
 		final EditText mcontentText = (EditText) findViewById(R.id.idea);
 	
-		//Erases already posted material!
+		//ADD CONSTRAINTS FOR POSTING EMPTY!!!!
 		mtitle = "";
 		mcontent = "";
 		//final EditText mtitleText = (EditText) findViewById(R.id.title);

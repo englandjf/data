@@ -8,47 +8,34 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".NewAccount" >
 
-    <EditText
-        android:id="@+id/editText1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="75dp"
-        android:ems="10"
-        android:hint="Desired username" >
-
-        <requestFocus />
-    </EditText>
-
-    <EditText
-        android:id="@+id/editText2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/editText1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"
-        android:ems="10"
-        android:inputType="textPassword" 
-        android:hint="Desired password"/>
-
-    <EditText
-        android:id="@+id/editText3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/editText2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"
-        android:ems="10"
-        android:inputType="textPassword"
-        android:hint="Retype password" />
-
     <Button
-        android:id="@+id/newAccount"
+        android:id="@+id/newAccountButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editText3"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"
+        android:layout_marginBottom="102dp"
         android:text="Create Account" />
+
+    <EditText
+        android:id="@+id/newUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="65dp"
+        android:ems="10"
+        android:hint="Desired username" />
+
+    <EditText
+        android:id="@+id/newPassword1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/newUsername"
+        android:layout_below="@+id/newUsername"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Desired password"
+        android:inputType="textPassword" />
 
 </RelativeLayout>

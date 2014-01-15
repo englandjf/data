@@ -17,30 +17,32 @@
         android:layout_marginTop="90dp"
         android:text="TextView" />
 
-    <TextView
-        android:id="@+id/score"
+    <Button
+        android:id="@+id/badIdea"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/textView1"
-        android:layout_below="@+id/textView1"
-        android:layout_marginTop="28dp"
-        android:text="TextView" />
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/score"
+        android:text="Shit Idea!" />
 
     <Button
         android:id="@+id/goodIdea"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@+id/badIdea"
         android:layout_toLeftOf="@+id/score"
-        android:text="Good Idea!" />
+        android:text="Good Idea!"
+        android:textSize="20dp" />
 
-    <Button
-        android:id="@+id/badIdea"
+    <TextView
+        android:id="@+id/score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/button1"
-        android:layout_alignBottom="@+id/button1"
-        android:layout_toRightOf="@+id/score"
-        android:text="Shit Idea!" />
+        android:layout_below="@+id/textView1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:text="TextView"
+        android:textSize="20dp" />
 
 </RelativeLayout>
