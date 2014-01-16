@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.Parse;
@@ -19,15 +20,21 @@ public class HomeScreen extends Activity {
 
 	//public static ParseObject mPosts = new ParseObject("Posts");
 
-	public String currentUser;
+	//public TextView mTemp =(TextView) findViewById(R.id.currentUser);
+	//public String currentUser;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home_screen);
 		Parse.initialize(this, "lJOuXGXbg66r8PQNE6O4dxovHocUCBvUqd8qJedz","3oVwEWUbMXsk08soxwfNssNXs0wPJFxbgFzYeUev" );
+		//Up here for text changing
+		final Button loginScreen = (Button) findViewById(R.id.loginScreen);
+		if(isLoggedIn()){
+			ParseUser currentUser = ParseUser.getCurrentUser();
+			Toast.makeText(this, "Hello "+ currentUser.getUsername(), Toast.LENGTH_LONG).show();
+		}
 		final Button postScreen = (Button) findViewById(R.id.postScreen);
-
 		postScreen.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -45,7 +52,6 @@ public class HomeScreen extends Activity {
 				
 			}
 		});
-		final Button loginScreen = (Button) findViewById(R.id.loginScreen);
 		loginScreen.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -68,13 +74,19 @@ public class HomeScreen extends Activity {
 	@Override
 	protected void onResume(){
 		super.onResume();
+		final Button loginScreen = (Button) findViewById(R.id.loginScreen);
 		ParseUser currentUser = ParseUser.getCurrentUser();
 		if(isLoggedIn()){
-			Toast.makeText(this, "Hello "+ currentUser.getUsername(), Toast.LENGTH_LONG).show();
 			Log.i("Logged In! ",""+ currentUser.getUsername());
+			loginScreen.setText("Logout");
+			TextView temp =(TextView) findViewById(R.id.currentUser);
+			temp.setText("Current User: " + currentUser.getUsername());
 		}
 		else{
 			Log.i("Not Logged","In");
+			TextView temp =(TextView) findViewById(R.id.currentUser);
+			temp.setText("Current User: none");
+			loginScreen.setText("Login");
 		}
 	}
 	
