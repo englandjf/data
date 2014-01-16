@@ -24,22 +24,25 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int action_settings=0x7f08000f;
+        public static final int action_settings=0x7f080012;
         public static final int badIdea=0x7f080005;
         public static final int goodIdea=0x7f080007;
-        public static final int idea=0x7f08000b;
+        public static final int idea=0x7f08000e;
         public static final int listScreen=0x7f080001;
         public static final int listView1=0x7f080008;
+        public static final int loginButton=0x7f08000b;
         public static final int loginScreen=0x7f080002;
+        public static final int loginText=0x7f080009;
         public static final int newAccount=0x7f080003;
-        public static final int newAccountButton=0x7f08000c;
-        public static final int newPassword1=0x7f08000e;
-        public static final int newUsername=0x7f08000d;
-        public static final int postButton=0x7f08000a;
+        public static final int newAccountButton=0x7f08000f;
+        public static final int newPassword1=0x7f080011;
+        public static final int newUsername=0x7f080010;
+        public static final int passwordText=0x7f08000a;
+        public static final int postButton=0x7f08000d;
         public static final int postScreen=0x7f080000;
         public static final int score=0x7f080006;
         public static final int textView1=0x7f080004;
-        public static final int title=0x7f080009;
+        public static final int title=0x7f08000c;
     }
     public static final class layout {
         public static final int activity_home_screen=0x7f030000;

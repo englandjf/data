@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.parse.Parse;
 import com.parse.ParseUser;
@@ -16,21 +17,17 @@ import com.parse.ParseUser;
 
 public class HomeScreen extends Activity {
 
-	public boolean loggedIn = false;
 	//public static ParseObject mPosts = new ParseObject("Posts");
 
+	public String currentUser;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home_screen);
 		Parse.initialize(this, "lJOuXGXbg66r8PQNE6O4dxovHocUCBvUqd8qJedz","3oVwEWUbMXsk08soxwfNssNXs0wPJFxbgFzYeUev" );
 		final Button postScreen = (Button) findViewById(R.id.postScreen);
-		if(isLoggedIn()){
-			loggedIn = true;
-			Log.i("Logged","In!");
-		}
-		else
-			Log.i("Not Logged","In");
+
 		postScreen.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -68,6 +65,19 @@ public class HomeScreen extends Activity {
 		});
 	}
 	
+	@Override
+	protected void onResume(){
+		super.onResume();
+		ParseUser currentUser = ParseUser.getCurrentUser();
+		if(isLoggedIn()){
+			Toast.makeText(this, "Hello "+ currentUser.getUsername(), Toast.LENGTH_LONG).show();
+			Log.i("Logged In! ",""+ currentUser.getUsername());
+		}
+		else{
+			Log.i("Not Logged","In");
+		}
+	}
+	
 	public void toPostScreen()
 	{
 		Intent intent = new Intent(this,PostScreen.class);
@@ -101,12 +111,11 @@ public class HomeScreen extends Activity {
 	{
 		ParseUser currentUser = ParseUser.getCurrentUser();
 		if (currentUser != null){
-			loggedIn = true;
+			return true;
 		}
 		else{
-			loggedIn = false;
+			return false;
 		}
-		return loggedIn;
 	}
 	
 	/*
