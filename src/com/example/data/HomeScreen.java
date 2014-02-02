@@ -39,7 +39,7 @@ public class HomeScreen extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				toPostScreen();		
+				toPostScreen();
 			}
 		});
 		
@@ -56,7 +56,17 @@ public class HomeScreen extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				toLoginScreen();
+				if(!isLoggedIn())
+					toLoginScreen();
+				else{
+					ParseUser.logOut();
+					Log.i("Logged","Out");
+					Intent intent = getIntent();
+					finish();
+					startActivity(intent);
+					
+				}
+					
 				
 			}
 		});

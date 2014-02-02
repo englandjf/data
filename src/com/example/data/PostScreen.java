@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.parse.ParseObject;
+import com.parse.ParseUser;
 
 
 public class PostScreen extends Activity  {
@@ -51,6 +52,9 @@ public class PostScreen extends Activity  {
 				mPosts.put("Title",mtitle);
 				mPosts.put("Content",mcontent);
 				mPosts.put("Score", 0);
+				ParseUser currentUser = ParseUser.getCurrentUser();
+				
+				mPosts.put("Author",currentUser.getUsername());
 				Calendar rightNow = Calendar.getInstance();
 				mPosts.put("Day",rightNow.get(Calendar.DAY_OF_YEAR));
 				mPosts.put("Year",rightNow.get(Calendar.YEAR));

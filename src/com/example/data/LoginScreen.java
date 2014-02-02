@@ -26,8 +26,7 @@ public class LoginScreen extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				loginUser(username,password);
-				
+				loginUser(username,password);		
 			}
 		});
 	}
@@ -47,6 +46,7 @@ public class LoginScreen extends Activity {
 				if(user != null){
 					Log.i("Test","Loggedin");
 					showToast("Logged In");
+					finish();
 				}
 				else{
 					Log.e("Error", "" + e.getMessage());
