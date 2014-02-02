@@ -75,7 +75,10 @@ public class HomeScreen extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				toAccountScreen();
+				if(!isLoggedIn())
+					toAccountScreen();
+				else
+					toProfileScreen();
 				
 			}
 		});
@@ -85,10 +88,12 @@ public class HomeScreen extends Activity {
 	protected void onResume(){
 		super.onResume();
 		final Button loginScreen = (Button) findViewById(R.id.loginScreen);
+		final Button accountScreen = (Button) findViewById(R.id.newAccount);
 		ParseUser currentUser = ParseUser.getCurrentUser();
 		if(isLoggedIn()){
 			Log.i("Logged In! ",""+ currentUser.getUsername());
 			loginScreen.setText("Logout");
+			accountScreen.setText("Profile");
 			TextView temp =(TextView) findViewById(R.id.currentUser);
 			temp.setText("Current User: " + currentUser.getUsername());
 		}
@@ -119,6 +124,11 @@ public class HomeScreen extends Activity {
 	
 	public void toAccountScreen(){
 		Intent intent = new Intent(this,NewAccount.class);
+		startActivity(intent);
+	}
+	
+	public void toProfileScreen(){
+		Intent intent = new Intent(this,Profile.class);
 		startActivity(intent);
 	}
 	@Override

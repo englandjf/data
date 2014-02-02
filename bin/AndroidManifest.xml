@@ -45,6 +45,10 @@
             android:name="com.example.data.NewAccount"
             android:label="@string/title_activity_new_account" >
         </activity>
+        <activity
+            android:name="com.example.data.Profile"
+            android:label="@string/title_activity_profile" >
+        </activity>
     </application>
 
 </manifest>

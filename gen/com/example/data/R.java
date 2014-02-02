@@ -52,6 +52,7 @@ public final class R {
         public static final int activity_login_screen=0x7f030003;
         public static final int activity_main=0x7f030004;
         public static final int activity_new_account=0x7f030005;
+        public static final int activity_profile=0x7f030006;
     }
     public static final class menu {
         public static final int home_screen=0x7f070000;
@@ -60,6 +61,7 @@ public final class R {
         public static final int login_screen=0x7f070003;
         public static final int main=0x7f070004;
         public static final int new_account=0x7f070005;
+        public static final int profile=0x7f070006;
     }
     public static final class string {
         public static final int action_settings=0x7f050001;
@@ -70,6 +72,7 @@ public final class R {
         public static final int title_activity_list_screen=0x7f050004;
         public static final int title_activity_login_screen=0x7f050006;
         public static final int title_activity_new_account=0x7f050007;
+        public static final int title_activity_profile=0x7f050008;
     }
     public static final class style {
         /** 
