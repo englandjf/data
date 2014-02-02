@@ -13,6 +13,7 @@ import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
 public class IdeaScreen extends Activity {
 
@@ -29,6 +30,10 @@ public class IdeaScreen extends Activity {
 		textview.setText(intent.getStringExtra(ListScreen.EXTRA_INFO));
 		TextView score = (TextView) findViewById(R.id.score);
 		objectID = intent.getStringExtra(ListScreen.EXTRA_INFO2);
+		TextView author = (TextView) findViewById(R.id.author);
+		ParseUser currentUser = ParseUser.getCurrentUser();
+		author.setText(currentUser.getUsername());
+		
 		score.setText(objectID);
 		Button goodButton = (Button) findViewById(R.id.goodIdea);
 		goodButton.setOnClickListener(new View.OnClickListener() {
