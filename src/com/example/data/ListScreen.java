@@ -72,8 +72,6 @@ public class ListScreen extends Activity {
 						postContent[i]=objects.get(i).getString("Content");
 						objectIds[i]=objects.get(i).getObjectId();
 					}
-					
-					
 					setList(postTitle,postContent,objectIds);
 				}
 				else{

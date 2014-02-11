@@ -1,8 +1,13 @@
 package com.example.data;
 
-import android.os.Bundle;
+import java.util.List;
+
 import android.app.Activity;
+import android.os.Bundle;
 import android.view.Menu;
+import android.widget.TextView;
+
+import com.parse.ParseUser;
 
 public class Profile extends Activity {
 
@@ -10,6 +15,10 @@ public class Profile extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_profile);
+		TextView totalPosts = (TextView)findViewById(R.id.totalPosts);
+		ParseUser currentUser = ParseUser.getCurrentUser();
+		List<Object> posts = currentUser.getList("userPosts");
+		totalPosts.setText("Total Posts: " + posts.size());
 	}
 
 	@Override
