@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -15,7 +16,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.parse.CountCallback;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -47,6 +47,19 @@ public class ListScreen extends Activity {
 		getMenuInflater().inflate(R.menu.list_screen, menu);
 		return true;
 	}
+	//Working out probs here
+	/*
+	public boolean onOptionsItemsSelected(MenuItem item){
+		switch(item.getItemId()){
+		case R.id.home:
+			  Toast.makeText(this, "Refresh selected", Toast.LENGTH_SHORT).show();
+		break;
+		default:
+	}
+		return true;
+		
+	}
+	*/
 	
 	
 	public void getPosts()
@@ -102,9 +115,7 @@ public class ListScreen extends Activity {
 				Log.i("Object","Id " + objectIds[position]);
 				displayContent(postContent[position],objectIds[position]);				
 			}			
-		});
-
-		
+		});		
 	}
 	
 	public void displayContent(String info,String id){

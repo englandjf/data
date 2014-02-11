@@ -18,7 +18,10 @@ public class Profile extends Activity {
 		TextView totalPosts = (TextView)findViewById(R.id.totalPosts);
 		ParseUser currentUser = ParseUser.getCurrentUser();
 		List<Object> posts = currentUser.getList("userPosts");
-		totalPosts.setText("Total Posts: " + posts.size());
+		if(posts != null)
+			totalPosts.setText("Total Posts: " + posts.size());
+		else
+			totalPosts.setText("No posts found");
 	}
 
 	@Override

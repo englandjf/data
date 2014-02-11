@@ -29,6 +29,7 @@ public final class R {
         public static final int badIdea=0x7f080005;
         public static final int currentUser=0x7f080004;
         public static final int goodIdea=0x7f080007;
+        public static final int home=0x7f080016;
         public static final int idea=0x7f080010;
         public static final int listScreen=0x7f080001;
         public static final int listView1=0x7f08000a;
