@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.parse.CountCallback;
 import com.parse.FindCallback;
@@ -33,6 +34,7 @@ public class ListScreen extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_list_screen);
+		Toast.makeText(this, "Loading...", Toast.LENGTH_SHORT).show();
 		Intent intent = getIntent();
 		getPosts();
 		
@@ -68,7 +70,7 @@ public class ListScreen extends Activity {
 					String[] objectIds = new String[objects.size()];
 					
 					for(int i = 0;i <= postTitle.length-1;i++){
-						postTitle[i]=objects.get(i).getString("Title");
+						postTitle[i]=objects.get(i).getString("Title") + "(" + objects.get(i).getInt("Score") + ")";
 						postContent[i]=objects.get(i).getString("Content");
 						objectIds[i]=objects.get(i).getObjectId();
 					}
