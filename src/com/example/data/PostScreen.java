@@ -1,5 +1,6 @@
 package com.example.data;
 
+import java.util.Arrays;
 import java.util.Calendar;
 
 import android.app.Activity;
@@ -12,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
@@ -20,6 +22,7 @@ public class PostScreen extends Activity  {
 
 	public ParseObject mPosts = new ParseObject("Posts");
 	//private ParseObject mPosts = HomeScreen.getObject();
+	//private String ID = mPosts.getObjectId();
 	private String mtitle = "";
 	private String mcontent = "";
 	
@@ -44,21 +47,28 @@ public class PostScreen extends Activity  {
 			
 			@Override
 			public void onClick(View v) {
+				posted.show();
 				mtitle = mtitleText.getText().toString();
 				mcontent = mcontentText.getText().toString();
 				Log.i("Title: ",mtitle);
 				Log.i("Content: ",mcontent);
-				posted.show();
+				
 				mPosts.put("Title",mtitle);
 				mPosts.put("Content",mcontent);
 				mPosts.put("Score", 0);
 				ParseUser currentUser = ParseUser.getCurrentUser();
-				
 				mPosts.put("Author",currentUser.getUsername());
 				Calendar rightNow = Calendar.getInstance();
 				mPosts.put("Day",rightNow.get(Calendar.DAY_OF_YEAR));
 				mPosts.put("Year",rightNow.get(Calendar.YEAR));
-				mPosts.saveInBackground();
+				try {
+					mPosts.save();
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				currentUser.add("userPosts","" + mPosts.getObjectId());
+				currentUser.saveInBackground();
 				mtitleText.setText("");
 				onBackPressed();
 			}
