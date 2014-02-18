@@ -53,7 +53,6 @@ public class PostScreen extends Activity  {
 				mcontent = mcontentText.getText().toString();
 				Log.i("Title: ",mtitle);
 				Log.i("Content: ",mcontent);
-				
 				mPosts.put("Title",mtitle);
 				mPosts.put("Content",mcontent);
 				mPosts.put("Score", 0);
@@ -69,8 +68,10 @@ public class PostScreen extends Activity  {
 					e.printStackTrace();
 				}
 				currentUser.add("userPosts", mPosts);
+				currentUser.add("Titles", mtitle);
 				currentUser.saveInBackground();
 				mtitleText.setText("");
+				mcontentText.setText("");
 				onBackPressed();
 			}
 		});

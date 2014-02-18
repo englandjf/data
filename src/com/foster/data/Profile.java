@@ -9,14 +9,15 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.foster.data.R;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
 public class Profile extends Activity {
 
 	public static List<ParseObject> posts;
+	public static List<String> titles;
 	
 	public final static String EXTRA_DECISION = "com.foster.data.TEMP";
 	@Override
@@ -27,6 +28,7 @@ public class Profile extends Activity {
 		TextView totalPosts = (TextView)findViewById(R.id.totalPosts);
 		ParseUser currentUser = ParseUser.getCurrentUser();
 		posts = currentUser.getList("userPosts");
+		titles = currentUser.getList("Titles");
 		if(posts != null)
 			totalPosts.setText("Total Posts: " + posts.size());
 		else
@@ -37,6 +39,7 @@ public class Profile extends Activity {
 			
 			@Override
 			public void onClick(View v) {
+				showToast();
 				showPosts(temp);		
 			}
 		});
@@ -62,4 +65,13 @@ public class Profile extends Activity {
 		return posts;
 	}
 	
+	public static List<String> getTitles()
+	{
+		return titles;
+	}
+	
+	public void showToast()
+	{
+		Toast.makeText(this, "Loading", Toast.LENGTH_LONG).show();
+	}
 }

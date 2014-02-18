@@ -2,7 +2,6 @@ package com.foster.data;
 
 import java.util.Calendar;
 import java.util.List;
-import java.util.Objects;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -16,7 +15,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.foster.data.R;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -35,7 +33,6 @@ public class ListScreen extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_list_screen);
-		Toast.makeText(this, "Loading...", Toast.LENGTH_SHORT).show();
 		Intent intent = getIntent();
 		String temp = intent.getStringExtra(Profile.EXTRA_DECISION);
 		if(temp != null)
@@ -47,9 +44,7 @@ public class ListScreen extends Activity {
 			displayUserPosts();
 		}
 		else
-			getPosts();
-	
-		
+			getPosts();	
 	}
 
 	@Override
@@ -93,8 +88,15 @@ public class ListScreen extends Activity {
 	public void displayUserPosts()
 	{
 		final List<ParseObject> posts = Profile.getData();
+		final List<String> titles = Profile.getTitles();
 		mlistView = (ListView)findViewById(R.id.listView1);
-		mAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,posts);
+		/*
+		for(int i = 0; i < posts.size();i++)
+		{
+			titles[i] = posts.get(i).getString("Title");
+		}
+		*/
+		mAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,titles);
 		mlistView.setAdapter(mAdapter);
 		mlistView.setOnItemClickListener(new OnItemClickListener() {
 			@Override
@@ -107,6 +109,7 @@ public class ListScreen extends Activity {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				
 				//Log.i("Object","Id " + objectIds[position]);
 				displayContent(posts.get(position).getString("Content"),posts.get(position).getObjectId());				
 				}
