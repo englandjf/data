@@ -81,12 +81,12 @@ public class IdeaScreen extends Activity {
 						Log.i("Tesss","hh" +object.getString("Title"));
 						object.increment("Score");
 						object.saveInBackground();
-						onBackPressed();
+						toListScreen();
 					}
 					else{
 						object.put("Score",object.getInt("Score")-1);
 						object.saveInBackground();
-						onBackPressed();
+						toListScreen();
 					}
 						
 				}
@@ -95,6 +95,12 @@ public class IdeaScreen extends Activity {
 				
 			}
 		});
+	}
+	
+	public void toListScreen()
+	{
+		Intent intent = new Intent(this,ListScreen.class);
+		startActivity(intent);
 	}
 
 }
