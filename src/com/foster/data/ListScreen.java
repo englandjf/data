@@ -26,6 +26,7 @@ public class ListScreen extends Activity {
 	//private boolean foundNumber = false;
 	public final static String EXTRA_INFO2 = "com.foster.data.ID";
 	public final static String EXTRA_INFO = "com.foster.data.INFO";
+	public final static String EXTRA_AUTHOR = "com.foster.data.AUTHOR";
 	private ListView mlistView;
 	private ArrayAdapter mAdapter;
 	
@@ -111,7 +112,7 @@ public class ListScreen extends Activity {
 				}
 				
 				//Log.i("Object","Id " + objectIds[position]);
-				displayContent(posts.get(position).getString("Content"),posts.get(position).getObjectId());				
+				displayContent(posts.get(position).getString("Content"),posts.get(position).getObjectId(),posts.get(position).getString("Author"));				
 				}
 		});
 		//Only works with object id!!! why...?
@@ -140,13 +141,18 @@ public class ListScreen extends Activity {
 					String[] postTitle = new String[objects.size()];
 					String[] postContent = new String[objects.size()];
 					String[] objectIds = new String[objects.size()];
+					//Authors added
+					String[] authors = new String[objects.size()];
 					
 					for(int i = 0;i <= postTitle.length-1;i++){
 						postTitle[i]=objects.get(i).getString("Title") + "(" + objects.get(i).getInt("Score") + ")";
 						postContent[i]=objects.get(i).getString("Content");
 						objectIds[i]=objects.get(i).getObjectId();
+						//
+						authors[i] =objects.get(i).getString("Author");
 					}
-					setList(postTitle,postContent,objectIds);
+					
+					setList(postTitle,postContent,objectIds,authors);
 				}
 				else{
 					Log.d("test","Error: " + e.getMessage());
@@ -159,7 +165,7 @@ public class ListScreen extends Activity {
 	}
 	
 	
-	public void setList(String[] postTitle, final String[] postContent, final String[] objectIds){
+	public void setList(String[] postTitle, final String[] postContent, final String[] objectIds,final String[] authors){
 		//Log.i("Test3","Content"+listPost[0]);
 		//ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,listPost);
 		//setListAdapter(adapter);
@@ -172,15 +178,17 @@ public class ListScreen extends Activity {
 					long id) {
 				Log.i("Clicked", "Postion" + position);
 				Log.i("Object","Id " + objectIds[position]);
-				displayContent(postContent[position],objectIds[position]);				
+				Log.i("Author"," "+authors[1]);
+				displayContent(postContent[position],objectIds[position],authors[position]);				
 			}			
 		});		
 	}
 	
-	public void displayContent(String info,String id){
+	public void displayContent(String info,String id,String author){
 		Intent intent = new Intent(this,IdeaScreen.class);
 		intent.putExtra(EXTRA_INFO, info);
 		intent.putExtra(EXTRA_INFO2,id);
+		intent.putExtra(EXTRA_AUTHOR,author);
 		startActivity(intent);	
 	}
 	

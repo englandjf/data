@@ -29,20 +29,24 @@ public class Profile extends Activity {
 		ParseUser currentUser = ParseUser.getCurrentUser();
 		posts = currentUser.getList("userPosts");
 		titles = currentUser.getList("Titles");
-		if(posts != null)
-			totalPosts.setText("Total Posts: " + posts.size());
-		else
-			totalPosts.setText("No posts found");
-		
 		final Button listScreen = (Button) findViewById(R.id.userPosts);
-		listScreen.setOnClickListener(new View.OnClickListener() {
+		if(posts != null)
+		{
+			totalPosts.setText("Total Posts: " + posts.size());	
 			
-			@Override
-			public void onClick(View v) {
-				showToast();
-				showPosts(temp);		
-			}
-		});
+			listScreen.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					showToast();
+					showPosts(temp);		
+				}
+			});				
+		}
+		else
+		{
+			totalPosts.setText("No posts found");
+			listScreen.setEnabled(false);
+		}	
 	}
 
 	@Override

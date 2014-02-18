@@ -33,24 +33,36 @@ public class IdeaScreen extends Activity {
 		objectID = intent.getStringExtra(ListScreen.EXTRA_INFO2);
 		TextView author = (TextView) findViewById(R.id.author);
 		ParseUser currentUser = ParseUser.getCurrentUser();
-		author.setText(currentUser.getUsername());
-		
+		author.setText(intent.getStringExtra(ListScreen.EXTRA_AUTHOR));
+		//Update this variable for score
 		score.setText(objectID);
 		Button goodButton = (Button) findViewById(R.id.goodIdea);
-		goodButton.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				goodIdea = true;
-				updateScore();
-			}
-		});
 		Button badButton = (Button) findViewById(R.id.badIdea);
-		badButton.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				goodIdea = false;
-				updateScore();
-			}
-		});
-	}
+		Log.i("TEXT ",""+author.getText().toString());
+		Log.i("USER ",""+currentUser.getUsername());
+		if(!author.getText().toString().equals(currentUser.getUsername()))
+		{
+			goodButton.setOnClickListener(new View.OnClickListener() {
+				public void onClick(View v) {
+					goodIdea = true;
+					updateScore();
+				}
+			});
+			
+			badButton.setOnClickListener(new View.OnClickListener() {
+				public void onClick(View v) {
+					goodIdea = false;
+					updateScore();
+				}
+			});
+		}
+		else
+		{
+			goodButton.setEnabled(false);
+			badButton.setEnabled(false);
+		}
+		}
+			
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
