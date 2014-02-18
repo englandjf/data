@@ -34,6 +34,7 @@ public class ListScreen extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_list_screen);
+		/*
 		Intent intent = getIntent();
 		String temp = intent.getStringExtra(Profile.EXTRA_DECISION);
 		if(temp != null)
@@ -46,6 +47,7 @@ public class ListScreen extends Activity {
 		}
 		else
 			getPosts();	
+			*/
 	}
 
 	@Override
@@ -53,6 +55,25 @@ public class ListScreen extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.list_screen, menu);
 		return true;
+	}
+	
+	@Override
+	protected void onResume()
+	{
+		super.onResume();
+		Intent intent = getIntent();
+		String temp = intent.getStringExtra(Profile.EXTRA_DECISION);
+		if(temp != null)
+			temp = intent.getStringExtra(Profile.EXTRA_DECISION);
+		else
+			temp = "";
+		//Log.i("Passed Variable"," " + temp);
+		if(temp.equals("user")){
+			displayUserPosts();
+		}
+		else
+			getPosts();	
+		
 	}
 	//Use this class for displaying lists
 	

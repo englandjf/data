@@ -72,10 +72,16 @@ public class PostScreen extends Activity  {
 				currentUser.saveInBackground();
 				mtitleText.setText("");
 				mcontentText.setText("");
-				onBackPressed();
+				toListScreen();
 			}
 		});
 		
+	}
+	
+	public void toListScreen()
+	{
+		Intent intent = new Intent(this,ListScreen.class);
+		startActivity(intent);
 	}
 	
 	public void toHomeScreen()
