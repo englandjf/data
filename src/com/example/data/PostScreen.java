@@ -67,7 +67,7 @@ public class PostScreen extends Activity  {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				currentUser.add("userPosts","" + mPosts.getObjectId());
+				currentUser.add("userPosts", mPosts);
 				currentUser.saveInBackground();
 				mtitleText.setText("");
 				onBackPressed();

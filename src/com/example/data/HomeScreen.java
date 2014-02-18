@@ -19,7 +19,9 @@ import com.parse.ParseUser;
 public class HomeScreen extends Activity {
 
 	//public static ParseObject mPosts = new ParseObject("Posts");
-
+	
+	//public final static String EXTRA_DECISION = "com.example.data.TEMP";
+	
 	//public TextView mTemp =(TextView) findViewById(R.id.currentUser);
 	//public String currentUser;
 	
@@ -114,6 +116,8 @@ public class HomeScreen extends Activity {
 	public void toListScreen()
 	{
 		Intent intent = new Intent(this,ListScreen.class);
+		//String temp = "top";
+		//intent.putExtra(EXTRA_DECISION,temp);
 		startActivity(intent);
 	}
 	

@@ -2,13 +2,13 @@ package com.example.data;
 
 import java.util.Calendar;
 import java.util.List;
+import java.util.Objects;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -23,8 +23,8 @@ import com.parse.ParseQuery;
 
 public class ListScreen extends Activity {
 
-	private int specialNumber = 11;
-	private boolean foundNumber = false;
+	//private int specialNumber = 11;
+	//private boolean foundNumber = false;
 	public final static String EXTRA_INFO2 = "com.example.data.ID";
 	public final static String EXTRA_INFO = "com.example.data.INFO";
 	private ListView mlistView;
@@ -36,8 +36,18 @@ public class ListScreen extends Activity {
 		setContentView(R.layout.activity_list_screen);
 		Toast.makeText(this, "Loading...", Toast.LENGTH_SHORT).show();
 		Intent intent = getIntent();
-		getPosts();
-		
+		String temp = intent.getStringExtra(Profile.EXTRA_DECISION);
+		if(temp != null)
+			temp = intent.getStringExtra(Profile.EXTRA_DECISION);
+		else
+			temp = "";
+		//Log.i("Passed Variable"," " + temp);
+		if(temp.equals("user")){
+			displayUserPosts();
+		}
+		else
+			getPosts();
+	
 		
 	}
 
@@ -47,19 +57,77 @@ public class ListScreen extends Activity {
 		getMenuInflater().inflate(R.menu.list_screen, menu);
 		return true;
 	}
-	//Working out probs here
+	//Use this class for displaying lists
+	
 	/*
-	public boolean onOptionsItemsSelected(MenuItem item){
-		switch(item.getItemId()){
-		case R.id.home:
-			  Toast.makeText(this, "Refresh selected", Toast.LENGTH_SHORT).show();
-		break;
-		default:
-	}
-		return true;
-		
+	public void getUserPosts()
+	{
+		query.findInBackground(new FindCallback<ParseObject>() {
+			public void done(List<ParseObject> objects, ParseException e) {
+				if(e == null){
+					//Log.i("test","Retrieved "+objects.size());
+					//Object[] temp = objects.toArray();
+					//Log.i("date","Array 1: " + objects.get(1).getString("createdAt"));
+					String[] postTitle = new String[objects.size()];
+					String[] postContent = new String[objects.size()];
+					String[] objectIds = new String[objects.size()];
+					
+					for(int i = 0;i <= postTitle.length-1;i++){
+						postTitle[i]=objects.get(i).getString("Title") + "(" + objects.get(i).getInt("Score") + ")";
+						postContent[i]=objects.get(i).getString("Content");
+						objectIds[i]=objects.get(i).getObjectId();
+					}
+					setList(postTitle,postContent,objectIds);
+				}
+				else{
+					Log.d("test","Error: " + e.getMessage());
+				}
+				
+			}
+		});
 	}
 	*/
+	
+	//WORKING ON THIS PART!!!!
+	public void displayUserPosts()
+	{
+		final List<ParseObject> posts = Profile.getData();
+		mlistView = (ListView)findViewById(R.id.listView1);
+		mAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,posts);
+		mlistView.setAdapter(mAdapter);
+		/*
+		try {
+			posts.get(2).fetch();
+			Log.i("Passed Variable","" + posts.get(2).getString("Title"));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		*/
+
+		
+		
+		
+		mlistView.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View view, int position,
+					long id) {
+				Log.i("Clicked", "Postion" + position);
+				try {
+					posts.get(position).fetchIfNeeded();
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				//Log.i("Object","Id " + objectIds[position]);
+				displayContent(posts.get(position).getString("Content"),posts.get(position).getObjectId());				
+				}
+		});
+		//Only works with object id!!! why...?
+
+		
+	}
+	
 	
 	
 	public void getPosts()
