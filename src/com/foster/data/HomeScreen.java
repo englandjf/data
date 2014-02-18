@@ -2,6 +2,7 @@
 
 package com.foster.data;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,7 +13,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.foster.data.R;
 import com.parse.Parse;
 import com.parse.ParseUser;
 
@@ -30,6 +30,8 @@ public class HomeScreen extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home_screen);
+		ActionBar actionBar = getActionBar();
+		actionBar.hide();
 		Parse.initialize(this, "lJOuXGXbg66r8PQNE6O4dxovHocUCBvUqd8qJedz","3oVwEWUbMXsk08soxwfNssNXs0wPJFxbgFzYeUev" );
 		//Up here for text changing
 		final Button loginScreen = (Button) findViewById(R.id.loginScreen);

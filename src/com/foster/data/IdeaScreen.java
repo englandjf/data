@@ -1,5 +1,6 @@
 package com.foster.data;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +10,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.foster.data.R;
 import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -26,6 +26,8 @@ public class IdeaScreen extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_idea_screen);
+		ActionBar actionBar = getActionBar();
+		actionBar.hide();
 		Intent intent = getIntent();
 		TextView textview = (TextView) findViewById(R.id.textView1);
 		textview.setText(intent.getStringExtra(ListScreen.EXTRA_INFO));

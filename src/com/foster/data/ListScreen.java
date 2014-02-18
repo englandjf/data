@@ -3,17 +3,18 @@ package com.foster.data;
 import java.util.Calendar;
 import java.util.List;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -54,9 +55,21 @@ public class ListScreen extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.list_screen, menu);
-		return true;
+		return super.onCreateOptionsMenu(menu);
 	}
 	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item)
+	{
+		switch(item.getItemId())
+		{
+			case R.id.home:
+				Intent intent = new Intent(this,HomeScreen.class);
+				startActivity(intent);
+			default:
+				return super.onOptionsItemSelected(item);
+		}
+	}
 	@Override
 	protected void onResume()
 	{
