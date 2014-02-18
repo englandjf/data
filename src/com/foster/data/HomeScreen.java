@@ -25,7 +25,7 @@ public class HomeScreen extends Activity {
 	
 	//public TextView mTemp =(TextView) findViewById(R.id.currentUser);
 	//public String currentUser;
-	
+	Button postScreen;// = (Button) findViewById(R.id.postScreen);
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -35,11 +35,18 @@ public class HomeScreen extends Activity {
 		Parse.initialize(this, "lJOuXGXbg66r8PQNE6O4dxovHocUCBvUqd8qJedz","3oVwEWUbMXsk08soxwfNssNXs0wPJFxbgFzYeUev" );
 		//Up here for text changing
 		final Button loginScreen = (Button) findViewById(R.id.loginScreen);
+		postScreen = (Button) findViewById(R.id.postScreen);
 		if(isLoggedIn()){
 			ParseUser currentUser = ParseUser.getCurrentUser();
 			Toast.makeText(this, "Hello "+ currentUser.getUsername(), Toast.LENGTH_LONG).show();
 		}
-		final Button postScreen = (Button) findViewById(R.id.postScreen);
+		
+		else
+		{
+			
+		}
+			
+		
 		postScreen.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -101,12 +108,14 @@ public class HomeScreen extends Activity {
 			accountScreen.setText("Profile");
 			TextView temp =(TextView) findViewById(R.id.currentUser);
 			temp.setText("Current User: " + currentUser.getUsername());
+			postScreen.setEnabled(true);
 		}
 		else{
 			Log.i("Not Logged","In");
 			TextView temp =(TextView) findViewById(R.id.currentUser);
 			temp.setText("Current User: none");
 			loginScreen.setText("Login");
+			postScreen.setEnabled(false);
 		}
 	}
 	

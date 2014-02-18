@@ -40,9 +40,11 @@ public class IdeaScreen extends Activity {
 		score.setText(objectID);
 		Button goodButton = (Button) findViewById(R.id.goodIdea);
 		Button badButton = (Button) findViewById(R.id.badIdea);
-		Log.i("TEXT ",""+author.getText().toString());
-		Log.i("USER ",""+currentUser.getUsername());
-		if(!author.getText().toString().equals(currentUser.getUsername()))
+		//Log.i("TEXT ",""+author.getText().toString());
+		//Log.i("USER ",""+currentUser.getUsername());
+		if(currentUser != null)
+		{
+		if(!author.getText().toString().equals(currentUser.getUsername()) )
 		{
 			goodButton.setOnClickListener(new View.OnClickListener() {
 				public void onClick(View v) {
@@ -57,6 +59,13 @@ public class IdeaScreen extends Activity {
 					updateScore();
 				}
 			});
+		}
+		else
+		{
+			goodButton.setEnabled(false);
+			badButton.setEnabled(false);
+		}
+		
 		}
 		else
 		{

@@ -30,7 +30,7 @@ public class ListScreen extends Activity {
 	public final static String EXTRA_AUTHOR = "com.foster.data.AUTHOR";
 	private ListView mlistView;
 	private ArrayAdapter mAdapter;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -57,7 +57,7 @@ public class ListScreen extends Activity {
 		getMenuInflater().inflate(R.menu.list_screen, menu);
 		return super.onCreateOptionsMenu(menu);
 	}
-	
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
@@ -86,10 +86,10 @@ public class ListScreen extends Activity {
 		}
 		else
 			getPosts();	
-		
+
 	}
 	//Use this class for displaying lists
-	
+
 	/*
 	public void getUserPosts()
 	{
@@ -118,7 +118,7 @@ public class ListScreen extends Activity {
 		});
 	}
 	*/
-	
+
 	//WORKING ON THIS PART!!!!
 	public void displayUserPosts()
 	{
@@ -144,18 +144,18 @@ public class ListScreen extends Activity {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
+
 				//Log.i("Object","Id " + objectIds[position]);
 				displayContent(posts.get(position).getString("Content"),posts.get(position).getObjectId(),posts.get(position).getString("Author"));				
 				}
 		});
 		//Only works with object id!!! why...?
 
-		
+
 	}
-	
-	
-	
+
+
+
 	public void getPosts()
 	{
 		//score check!!!
@@ -177,7 +177,7 @@ public class ListScreen extends Activity {
 					String[] objectIds = new String[objects.size()];
 					//Authors added
 					String[] authors = new String[objects.size()];
-					
+
 					for(int i = 0;i <= postTitle.length-1;i++){
 						postTitle[i]=objects.get(i).getString("Title") + "(" + objects.get(i).getInt("Score") + ")";
 						postContent[i]=objects.get(i).getString("Content");
@@ -185,20 +185,20 @@ public class ListScreen extends Activity {
 						//
 						authors[i] =objects.get(i).getString("Author");
 					}
-					
+
 					setList(postTitle,postContent,objectIds,authors);
 				}
 				else{
 					Log.d("test","Error: " + e.getMessage());
 				}
-				
+
 			}
 		});
-		
-		
+
+
 	}
-	
-	
+
+
 	public void setList(String[] postTitle, final String[] postContent, final String[] objectIds,final String[] authors){
 		//Log.i("Test3","Content"+listPost[0]);
 		//ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,listPost);
@@ -217,7 +217,7 @@ public class ListScreen extends Activity {
 			}			
 		});		
 	}
-	
+
 	public void displayContent(String info,String id,String author){
 		Intent intent = new Intent(this,IdeaScreen.class);
 		intent.putExtra(EXTRA_INFO, info);
@@ -225,8 +225,8 @@ public class ListScreen extends Activity {
 		intent.putExtra(EXTRA_AUTHOR,author);
 		startActivity(intent);	
 	}
-	
-	
+
+
 	/*
 	public int scoreCheck(){
 		ParseQuery<ParseObject> query = ParseQuery.getQuery("Posts");
@@ -253,5 +253,5 @@ public class ListScreen extends Activity {
 		return specialNumber;
 	}
 	*/
-	
+
 }
