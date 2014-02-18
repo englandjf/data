@@ -1,4 +1,4 @@
-package com.example.data;
+package com.foster.data;
 
 import java.util.Arrays;
 import java.util.Calendar;
@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.foster.data.R;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseUser;

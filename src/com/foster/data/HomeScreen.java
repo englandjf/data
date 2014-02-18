@@ -1,6 +1,6 @@
 
 
-package com.example.data;
+package com.foster.data;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.foster.data.R;
 import com.parse.Parse;
 import com.parse.ParseUser;
 
@@ -20,7 +21,7 @@ public class HomeScreen extends Activity {
 
 	//public static ParseObject mPosts = new ParseObject("Posts");
 	
-	//public final static String EXTRA_DECISION = "com.example.data.TEMP";
+	//public final static String EXTRA_DECISION = "com.foster.data.TEMP";
 	
 	//public TextView mTemp =(TextView) findViewById(R.id.currentUser);
 	//public String currentUser;

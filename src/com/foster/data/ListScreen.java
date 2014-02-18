@@ -1,4 +1,4 @@
-package com.example.data;
+package com.foster.data;
 
 import java.util.Calendar;
 import java.util.List;
@@ -16,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.foster.data.R;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -25,8 +26,8 @@ public class ListScreen extends Activity {
 
 	//private int specialNumber = 11;
 	//private boolean foundNumber = false;
-	public final static String EXTRA_INFO2 = "com.example.data.ID";
-	public final static String EXTRA_INFO = "com.example.data.INFO";
+	public final static String EXTRA_INFO2 = "com.foster.data.ID";
+	public final static String EXTRA_INFO = "com.foster.data.INFO";
 	private ListView mlistView;
 	private ArrayAdapter mAdapter;
 	
@@ -95,19 +96,6 @@ public class ListScreen extends Activity {
 		mlistView = (ListView)findViewById(R.id.listView1);
 		mAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,posts);
 		mlistView.setAdapter(mAdapter);
-		/*
-		try {
-			posts.get(2).fetch();
-			Log.i("Passed Variable","" + posts.get(2).getString("Title"));
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		*/
-
-		
-		
-		
 		mlistView.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View view, int position,

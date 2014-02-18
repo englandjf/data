@@ -1,4 +1,4 @@
-package com.example.data;
+package com.foster.data;
 
 import java.util.List;
 
@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.foster.data.R;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
@@ -17,7 +18,7 @@ public class Profile extends Activity {
 
 	public static List<ParseObject> posts;
 	
-	public final static String EXTRA_DECISION = "com.example.data.TEMP";
+	public final static String EXTRA_DECISION = "com.foster.data.TEMP";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

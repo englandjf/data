@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.data"
+    package="com.foster.data"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -17,7 +17,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.example.data.HomeScreen"
+            android:name="com.foster.data.HomeScreen"
             android:label="@string/title_activity_home_screen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,27 +26,27 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.data.PostScreen"
+            android:name="com.foster.data.PostScreen"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="com.example.data.ListScreen"
+            android:name="com.foster.data.ListScreen"
             android:label="@string/title_activity_list_screen" >
         </activity>
         <activity
-            android:name="com.example.data.IdeaScreen"
+            android:name="com.foster.data.IdeaScreen"
             android:label="@string/title_activity_idea_screen" >
         </activity>
         <activity
-            android:name="com.example.data.LoginScreen"
+            android:name="com.foster.data.LoginScreen"
             android:label="@string/title_activity_login_screen" >
         </activity>
         <activity
-            android:name="com.example.data.NewAccount"
+            android:name="com.foster.data.NewAccount"
             android:label="@string/title_activity_new_account" >
         </activity>
         <activity
-            android:name="com.example.data.Profile"
+            android:name="com.foster.data.Profile"
             android:label="@string/title_activity_profile" >
         </activity>
     </application>
