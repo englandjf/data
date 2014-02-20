@@ -60,7 +60,7 @@ public class HomeScreen extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				toListScreen();
+				toListOptions();
 				
 			}
 		});
@@ -125,9 +125,9 @@ public class HomeScreen extends Activity {
 		startActivity(intent);
 	}
 
-	public void toListScreen()
+	public void toListOptions()
 	{
-		Intent intent = new Intent(this,ListScreen.class);
+		Intent intent = new Intent(this,ToList.class);
 		//String temp = "top";
 		//intent.putExtra(EXTRA_DECISION,temp);
 		startActivity(intent);

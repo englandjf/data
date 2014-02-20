@@ -49,6 +49,10 @@
             android:name="com.foster.data.Profile"
             android:label="@string/title_activity_profile" >
         </activity>
+        <activity
+            android:name="com.foster.data.ToList"
+            android:label="@string/title_activity_to_list" >
+        </activity>
     </application>
 
 </manifest>

@@ -10,5 +10,6 @@
     <string name="title_activity_login_screen">LoginScreen</string>
     <string name="title_activity_new_account">NewAccount</string>
     <string name="title_activity_profile">Profile</string>
+    <string name="title_activity_to_list">ToList</string>
 
 </resources>
