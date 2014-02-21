@@ -212,7 +212,7 @@ public class ListScreen extends Activity {
 					long id) {
 				Log.i("Clicked", "Postion" + position);
 				Log.i("Object","Id " + objectIds[position]);
-				Log.i("Author"," "+authors[1]);
+				Log.i("Author"," "+authors[position]);
 				displayContent(postContent[position],objectIds[position],authors[position]);				
 			}			
 		});		
@@ -223,6 +223,7 @@ public class ListScreen extends Activity {
 		intent.putExtra(EXTRA_INFO, info);
 		intent.putExtra(EXTRA_INFO2,id);
 		intent.putExtra(EXTRA_AUTHOR,author);
+		Log.i("Start", "Activity");
 		startActivity(intent);	
 	}
 

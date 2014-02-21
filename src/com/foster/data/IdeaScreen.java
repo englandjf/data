@@ -18,7 +18,7 @@ import com.parse.ParseUser;
 
 public class IdeaScreen extends Activity {
 
-	
+
 	//private ParseObject mPosts = HomeScreen.getObject();
 	private boolean goodIdea;
 	public String objectID;	
@@ -29,12 +29,12 @@ public class IdeaScreen extends Activity {
 		ActionBar actionBar = getActionBar();
 		actionBar.hide();
 		Intent intent = getIntent();
-		TextView textview = (TextView) findViewById(R.id.textView1);
+		TextView textview = (TextView) findViewById(R.id.title);
 		textview.setText(intent.getStringExtra(ListScreen.EXTRA_INFO));
 		TextView score = (TextView) findViewById(R.id.score);
 		objectID = intent.getStringExtra(ListScreen.EXTRA_INFO2);
 		TextView author = (TextView) findViewById(R.id.author);
-		ParseUser currentUser = ParseUser.getCurrentUser();
+		final ParseUser currentUser = ParseUser.getCurrentUser();
 		author.setText(intent.getStringExtra(ListScreen.EXTRA_AUTHOR));
 		//Update this variable for score
 		score.setText(objectID);
@@ -42,6 +42,7 @@ public class IdeaScreen extends Activity {
 		Button badButton = (Button) findViewById(R.id.badIdea);
 		//Log.i("TEXT ",""+author.getText().toString());
 		//Log.i("USER ",""+currentUser.getUsername());
+		
 		if(currentUser != null)
 		{
 		if(!author.getText().toString().equals(currentUser.getUsername()) )
@@ -49,16 +50,23 @@ public class IdeaScreen extends Activity {
 			goodButton.setOnClickListener(new View.OnClickListener() {
 				public void onClick(View v) {
 					goodIdea = true;
-					updateScore();
+					updateScore(currentUser);
 				}
 			});
-			
+
 			badButton.setOnClickListener(new View.OnClickListener() {
 				public void onClick(View v) {
 					goodIdea = false;
-					updateScore();
+					updateScore(currentUser);
 				}
 			});
+		}
+		else
+		{
+			goodButton.setEnabled(false);
+			badButton.setEnabled(false);
+		}
+
 		}
 		else
 		{
@@ -67,13 +75,6 @@ public class IdeaScreen extends Activity {
 		}
 		
 		}
-		else
-		{
-			goodButton.setEnabled(false);
-			badButton.setEnabled(false);
-		}
-		}
-			
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -81,8 +82,8 @@ public class IdeaScreen extends Activity {
 		getMenuInflater().inflate(R.menu.idea_screen, menu);
 		return true;
 	}
-	
-	public void updateScore(){
+
+	public void updateScore(final ParseUser user){
 		ParseQuery <ParseObject> query = ParseQuery.getQuery("Posts");
 		Log.i("Fuck","Balls " + objectID);
 		query.getInBackground(objectID, new GetCallback<ParseObject>() {
@@ -91,23 +92,25 @@ public class IdeaScreen extends Activity {
 					if(goodIdea){
 						Log.i("Tesss","hh" +object.getString("Title"));
 						object.increment("Score");
+						object.add("like","" + user.getUsername());
 						object.saveInBackground();
 						toListScreen();
 					}
 					else{
 						object.put("Score",object.getInt("Score")-1);
+						object.add("dislike", "" + user.getUsername());
 						object.saveInBackground();
 						toListScreen();
 					}
-						
+
 				}
 				else
 				Log.e("Problem","Big " + e.getMessage());
-				
+
 			}
 		});
 	}
-	
+
 	public void toListScreen()
 	{
 		Intent intent = new Intent(this,ListScreen.class);
