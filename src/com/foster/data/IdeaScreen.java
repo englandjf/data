@@ -1,5 +1,7 @@
 package com.foster.data;
 
+import java.util.List;
+
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
@@ -22,6 +24,8 @@ public class IdeaScreen extends Activity {
 	//private ParseObject mPosts = HomeScreen.getObject();
 	private boolean goodIdea;
 	public String objectID;	
+	public List <String> likeUser;
+	public List <String> dislikeUser;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -85,20 +89,54 @@ public class IdeaScreen extends Activity {
 
 	public void updateScore(final ParseUser user){
 		ParseQuery <ParseObject> query = ParseQuery.getQuery("Posts");
+		final String username = user.getUsername();
 		Log.i("Fuck","Balls " + objectID);
 		query.getInBackground(objectID, new GetCallback<ParseObject>() {
 			public void done(ParseObject object, ParseException e) {
 				if(e == null){
 					if(goodIdea){
-						Log.i("Tesss","hh" +object.getString("Title"));
-						object.increment("Score");
-						object.add("like","" + user.getUsername());
+						//Log.i("Tesss","hh" +object.getString("Title"));
+						
+						likeUser = object.getList("like");
+						boolean liked = false;
+						if(likeUser != null)
+						{
+							for(int i = 0; i < likeUser.size();i++)
+								if(likeUser.get(i).equals(username))
+									liked = true;
+							if(!liked)
+							{
+								object.add("like","" + username);
+								object.increment("Score");
+							}		
+						}
+						else
+						{
+							object.add("like","" + username);
+							object.increment("Score");
+						}
 						object.saveInBackground();
 						toListScreen();
 					}
 					else{
-						object.put("Score",object.getInt("Score")-1);
-						object.add("dislike", "" + user.getUsername());
+						dislikeUser = object.getList("dislike");
+						boolean disliked = false;
+						if(dislikeUser != null)
+						{
+							for(int i = 0; i < dislikeUser.size();i++)
+								if(dislikeUser.get(i).equals(username))
+									disliked = true;
+							if(!disliked)
+							{
+								object.add("dislike","" + username);
+								object.put("Score",object.getInt("Score")-1);
+							}
+						}
+						else
+						{
+							object.add("dislike", "" + username);
+							object.put("Score",object.getInt("Score")-1);
+						}
 						object.saveInBackground();
 						toListScreen();
 					}
