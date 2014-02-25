@@ -44,7 +44,7 @@ public class IdeaScreen extends Activity {
 		TextView title = (TextView) findViewById(R.id.ideaTitle);
 		title.setText(intent.getStringExtra(ListScreen.EXTRA_TITLE));
 		//Update this variable for score
-		score.setText(objectID);
+		score.setText(intent.getStringExtra(ListScreen.EXTRA_INFO2));
 		Button goodButton = (Button) findViewById(R.id.goodIdea);
 		Button badButton = (Button) findViewById(R.id.badIdea);
 		//Log.i("TEXT ",""+author.getText().toString());
@@ -101,7 +101,6 @@ public class IdeaScreen extends Activity {
 				return super.onOptionsItemSelected(item);
 		}
 	}
-
 	public void updateScore(final ParseUser user){
 		ParseQuery <ParseObject> query = ParseQuery.getQuery("Posts");
 		final String username = user.getUsername();

@@ -5,6 +5,6 @@
         android:id="@+id/home"
         android:orderInCategory="100"
         android:showAsAction="always"
-        android:icon="@drawable/tolist"
+        android:icon="@drawable/homeicon"
         android:title="Home"/>
 </menu>
