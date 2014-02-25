@@ -29,6 +29,7 @@ public class ListScreen extends Activity {
 	public final static String EXTRA_INFO = "com.foster.data.INFO";
 	public final static String EXTRA_AUTHOR = "com.foster.data.AUTHOR";
 	public final static String EXTRA_TITLE = "com.foster.data.TITLE";
+	public final static String EXTRA_ID = "com.foster.data.ID";
 	private ListView mlistView;
 	private ArrayAdapter mAdapter;
 
@@ -154,7 +155,7 @@ public class ListScreen extends Activity {
 				}
 
 				//Log.i("Object","Id " + objectIds[position]);
-				displayContent(posts.get(position).getString("Content"),"" + posts.get(position).getInt("Score"),posts.get(position).getString("Author"),posts.get(position).getString("Title"));				
+				displayContent(posts.get(position).getString("Content"),"" + posts.get(position).getInt("Score"),posts.get(position).getString("Author"),posts.get(position).getString("Title"),posts.get(position).getObjectId());				
 				}
 		});
 		//Only works with object id!!! why...?
@@ -185,6 +186,7 @@ public class ListScreen extends Activity {
 					String[] postScore = new String[objects.size()];
 					//Authors added
 					String[] authors = new String[objects.size()];
+					String[] postID = new String[objects.size()];
 
 					for(int i = 0;i <= postTitle.length-1;i++){
 						postTitle[i]=objects.get(i).getString("Title") + "(" + objects.get(i).getInt("Score") + ")";
@@ -192,9 +194,10 @@ public class ListScreen extends Activity {
 						postScore[i]= "" + objects.get(i).getInt("Score");
 						//
 						authors[i] =objects.get(i).getString("Author");
+						postID[i] = objects.get(i).getObjectId();
 					}
 
-					setList(postTitle,postContent,postScore,authors);
+					setList(postTitle,postContent,postScore,authors,postID);
 				}
 				else{
 					Log.d("test","Error: " + e.getMessage());
@@ -219,15 +222,17 @@ public class ListScreen extends Activity {
 					String[] postContent = new String[objects.size()];
 					String[] postScore = new String[objects.size()];
 					String[] authors = new String[objects.size()];
+					String[] postID = new String[objects.size()];
 
 					for(int i = 0;i <= postTitle.length-1;i++){
 						postTitle[i]=objects.get(i).getString("Title") + "(" + objects.get(i).getInt("Score") + ")";
 						postContent[i]=objects.get(i).getString("Content");
 						postScore[i]= "" + objects.get(i).getInt("Score");
 						authors[i] =objects.get(i).getString("Author");
+						postID[i] = objects.get(i).getObjectId();
 					}
 
-					setList(postTitle,postContent,postScore,authors);
+					setList(postTitle,postContent,postScore,authors,postID);
 				}
 				else{
 					Log.d("test","Error: " + e.getMessage());
@@ -251,15 +256,17 @@ public class ListScreen extends Activity {
 					String[] postContent = new String[objects.size()];
 					String[] postScore = new String[objects.size()];
 					String[] authors = new String[objects.size()];
+					String[] postID = new String[objects.size()];
 
 					for(int i = 0;i <= postTitle.length-1;i++){
 						postTitle[i]=objects.get(i).getString("Title") + "(" + objects.get(i).getInt("Score") + ")";
 						postContent[i]=objects.get(i).getString("Content");
 						postScore[i]= "" + objects.get(i).getInt("Score");
 						authors[i] =objects.get(i).getString("Author");
+						postID[i] = objects.get(i).getObjectId();
 					}
 
-					setList(postTitle,postContent,postScore,authors);
+					setList(postTitle,postContent,postScore,authors,postID);
 				}
 				else{
 					Log.d("test","Error: " + e.getMessage());
@@ -270,7 +277,7 @@ public class ListScreen extends Activity {
 	}
 
 
-	public void setList(final String[] postTitle, final String[] postContent, final String[] postScore,final String[] authors){
+	public void setList(final String[] postTitle, final String[] postContent, final String[] postScore,final String[] authors,final String[] postID){
 		//Log.i("Test3","Content"+listPost[0]);
 		//ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,listPost);
 		//setListAdapter(adapter);
@@ -287,17 +294,18 @@ public class ListScreen extends Activity {
 				//Removes score element
 				String temp = postTitle[position];
 				String temp2 = temp.substring(0, temp.length()-3);
-				displayContent(postContent[position],postScore[position],authors[position],temp2);				
+				displayContent(postContent[position],postScore[position],authors[position],temp2,postID[position]);				
 			}			
 		});		
 	}
 
-	public void displayContent(String info,String score,String author,String title){
+	public void displayContent(String info,String score,String author,String title,String id){
 		Intent intent = new Intent(this,IdeaScreen.class);
 		intent.putExtra(EXTRA_INFO, info);
 		intent.putExtra(EXTRA_INFO2,score);
 		intent.putExtra(EXTRA_AUTHOR,author);
 		intent.putExtra(EXTRA_TITLE,title);
+		intent.putExtra(EXTRA_ID,id);
 		Log.i("Start", "Activity");
 		startActivity(intent);	
 	}

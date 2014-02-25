@@ -37,7 +37,7 @@ public class IdeaScreen extends Activity {
 		TextView textview = (TextView) findViewById(R.id.ideaContent);
 		textview.setText(intent.getStringExtra(ListScreen.EXTRA_INFO));
 		TextView score = (TextView) findViewById(R.id.score);
-		objectID = intent.getStringExtra(ListScreen.EXTRA_INFO2);
+		objectID = intent.getStringExtra(ListScreen.EXTRA_ID);
 		TextView author = (TextView) findViewById(R.id.author);
 		final ParseUser currentUser = ParseUser.getCurrentUser();
 		author.setText(intent.getStringExtra(ListScreen.EXTRA_AUTHOR));
@@ -131,7 +131,8 @@ public class IdeaScreen extends Activity {
 							object.increment("Score");
 						}
 						object.saveInBackground();
-						toListScreen();
+						onBackPressed();
+						//toListScreen();
 					}
 					else{
 						dislikeUser = object.getList("dislike");
@@ -153,7 +154,8 @@ public class IdeaScreen extends Activity {
 							object.put("Score",object.getInt("Score")-1);
 						}
 						object.saveInBackground();
-						toListScreen();
+						onBackPressed();
+						//toListScreen();
 					}
 
 				}
