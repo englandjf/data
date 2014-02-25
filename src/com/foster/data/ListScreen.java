@@ -90,8 +90,10 @@ public class ListScreen extends Activity {
 			temp = intent.getStringExtra(ToList.EXTRA_DECISION);
 			if(temp.equals("top10"))
 				getPosts();	
-			else if(temp.equals("randomPosts"));
+			else if(temp.equals("newPosts"))
 				getNewPosts();
+			else if (temp.equals("randomPosts"))
+				getRandomPosts();
 		}
 	}
 	//Use this class for displaying lists
@@ -209,6 +211,38 @@ public class ListScreen extends Activity {
 		ParseQuery<ParseObject> query = ParseQuery.getQuery("Posts");
 		query.setLimit(10);
 		query.orderByDescending("Day");
+		query.findInBackground(new FindCallback<ParseObject>() {
+			public void done(List<ParseObject> objects, ParseException e) {
+				if(e == null){
+					Log.i("test","Retrieved "+objects.size());
+					String[] postTitle = new String[objects.size()];
+					String[] postContent = new String[objects.size()];
+					String[] postScore = new String[objects.size()];
+					String[] authors = new String[objects.size()];
+
+					for(int i = 0;i <= postTitle.length-1;i++){
+						postTitle[i]=objects.get(i).getString("Title") + "(" + objects.get(i).getInt("Score") + ")";
+						postContent[i]=objects.get(i).getString("Content");
+						postScore[i]= "" + objects.get(i).getInt("Score");
+						authors[i] =objects.get(i).getString("Author");
+					}
+
+					setList(postTitle,postContent,postScore,authors);
+				}
+				else{
+					Log.d("test","Error: " + e.getMessage());
+				}
+
+			}
+		});
+	}
+	
+	
+	public void getRandomPosts()
+	{
+		ParseQuery<ParseObject> query = ParseQuery.getQuery("Posts");
+		query.setLimit(10);
+		//query.orderByDescending("Day");
 		query.findInBackground(new FindCallback<ParseObject>() {
 			public void done(List<ParseObject> objects, ParseException e) {
 				if(e == null){

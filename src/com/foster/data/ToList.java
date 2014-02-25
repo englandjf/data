@@ -38,6 +38,7 @@ public class ToList extends Activity {
 			}
 		});
 		final Button randomPosts = (Button) findViewById(R.id.randomPosts);
+		randomPosts.setEnabled(false);
 		randomPosts.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
