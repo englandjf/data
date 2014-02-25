@@ -6,5 +6,5 @@
         android:orderInCategory="100"
         android:showAsAction="always"
         android:icon="@drawable/tolist"
-        android:title="Home"/>
+        android:title="toList"/>
 </menu>
