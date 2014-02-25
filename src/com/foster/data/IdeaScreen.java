@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -30,16 +31,18 @@ public class IdeaScreen extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_idea_screen);
-		ActionBar actionBar = getActionBar();
-		actionBar.hide();
+		//ActionBar actionBar = getActionBar();
+		//actionBar.hide();
 		Intent intent = getIntent();
-		TextView textview = (TextView) findViewById(R.id.title);
+		TextView textview = (TextView) findViewById(R.id.ideaContent);
 		textview.setText(intent.getStringExtra(ListScreen.EXTRA_INFO));
 		TextView score = (TextView) findViewById(R.id.score);
 		objectID = intent.getStringExtra(ListScreen.EXTRA_INFO2);
 		TextView author = (TextView) findViewById(R.id.author);
 		final ParseUser currentUser = ParseUser.getCurrentUser();
 		author.setText(intent.getStringExtra(ListScreen.EXTRA_AUTHOR));
+		TextView title = (TextView) findViewById(R.id.ideaTitle);
+		title.setText(intent.getStringExtra(ListScreen.EXTRA_TITLE));
 		//Update this variable for score
 		score.setText(objectID);
 		Button goodButton = (Button) findViewById(R.id.goodIdea);
@@ -85,6 +88,18 @@ public class IdeaScreen extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.idea_screen, menu);
 		return true;
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item)
+	{
+		switch(item.getItemId())
+		{
+			case R.id.toList:
+				onBackPressed();
+			default:
+				return super.onOptionsItemSelected(item);
+		}
 	}
 
 	public void updateScore(final ParseUser user){

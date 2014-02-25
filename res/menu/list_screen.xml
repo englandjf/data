@@ -2,9 +2,9 @@
 
 
 	 <item
-        android:id="@+id/home"
+        android:id="@+id/tolist"
         android:orderInCategory="100"
         android:showAsAction="always"
-        android:icon="@drawable/home"
+        android:icon="@drawable/tolist"
         android:title="Home"/>
 </menu>

@@ -12,6 +12,7 @@
         android:id="@+id/badIdea"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/ideaContent"
         android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/score"
         android:text="Bad Idea!" />
@@ -20,20 +21,11 @@
         android:id="@+id/goodIdea"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/badIdea"
         android:layout_alignParentLeft="true"
         android:layout_alignTop="@+id/badIdea"
-        android:layout_toLeftOf="@+id/score"
         android:text="Good Idea!"
         android:textSize="20dp" />
-
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="42dp"
-        android:text="Title" />
 
     <TextView
         android:id="@+id/score"
@@ -50,8 +42,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/score"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_marginBottom="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="18dp"
         android:text="Author" />
+
+    <TextView
+        android:id="@+id/ideaContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="82dp"
+        android:text="Content" />
+
+    <TextView
+        android:id="@+id/ideaTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/author"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="31dp"
+        android:text="Title" />
 
 </RelativeLayout>

@@ -28,6 +28,7 @@ public class ListScreen extends Activity {
 	public final static String EXTRA_INFO2 = "com.foster.data.ID";
 	public final static String EXTRA_INFO = "com.foster.data.INFO";
 	public final static String EXTRA_AUTHOR = "com.foster.data.AUTHOR";
+	public final static String EXTRA_TITLE = "com.foster.data.TITLE";
 	private ListView mlistView;
 	private ArrayAdapter mAdapter;
 
@@ -146,7 +147,7 @@ public class ListScreen extends Activity {
 				}
 
 				//Log.i("Object","Id " + objectIds[position]);
-				displayContent(posts.get(position).getString("Content"),posts.get(position).getObjectId(),posts.get(position).getString("Author"));				
+				displayContent(posts.get(position).getString("Content"),posts.get(position).getObjectId(),posts.get(position).getString("Author"),posts.get(position).getString("Title"));				
 				}
 		});
 		//Only works with object id!!! why...?
@@ -199,7 +200,7 @@ public class ListScreen extends Activity {
 	}
 
 
-	public void setList(String[] postTitle, final String[] postContent, final String[] objectIds,final String[] authors){
+	public void setList(final String[] postTitle, final String[] postContent, final String[] objectIds,final String[] authors){
 		//Log.i("Test3","Content"+listPost[0]);
 		//ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,listPost);
 		//setListAdapter(adapter);
@@ -213,16 +214,18 @@ public class ListScreen extends Activity {
 				Log.i("Clicked", "Postion" + position);
 				Log.i("Object","Id " + objectIds[position]);
 				Log.i("Author"," "+authors[position]);
-				displayContent(postContent[position],objectIds[position],authors[position]);				
+				displayContent(postContent[position],objectIds[position],authors[position],postTitle[position]);				
 			}			
 		});		
 	}
 
-	public void displayContent(String info,String id,String author){
+	public void displayContent(String info,String id,String author,String title){
 		Intent intent = new Intent(this,IdeaScreen.class);
 		intent.putExtra(EXTRA_INFO, info);
 		intent.putExtra(EXTRA_INFO2,id);
 		intent.putExtra(EXTRA_AUTHOR,author);
+		String temp = title.substring(0, title.length()-3);
+		intent.putExtra(EXTRA_TITLE,temp);
 		Log.i("Start", "Activity");
 		startActivity(intent);	
 	}
