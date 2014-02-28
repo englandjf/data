@@ -1,6 +1,5 @@
 package com.foster.data;
 
-import java.util.Arrays;
 import java.util.Calendar;
 
 import android.app.ActionBar;
@@ -14,20 +13,22 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.foster.data.R;
+import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 
 public class PostScreen extends Activity  {
 
 	public ParseObject mPosts = new ParseObject("Posts");
+	//public int currentIndex;
 	//private ParseObject mPosts = HomeScreen.getObject();
 	//private String ID = mPosts.getObjectId();
 	private String mtitle = "";
 	private String mcontent = "";
-	
+	public int index;
 	//final EditText mtitleText = (EditText) findViewById(R.id.title);
 	//final EditText mcontentText = (EditText) findViewById(R.id.idea);
 	
@@ -43,6 +44,7 @@ public class PostScreen extends Activity  {
 		//ADD CONSTRAINTS FOR POSTING EMPTY!!!!
 		mtitle = "";
 		mcontent = "";
+		getIndex();
 		//final EditText mtitleText = (EditText) findViewById(R.id.title);
 		//final EditText mcontentText = (EditText) findViewById(R.id.idea);
 		final Toast posted = Toast.makeText(this, "Posted", Toast.LENGTH_LONG);
@@ -59,6 +61,11 @@ public class PostScreen extends Activity  {
 				mPosts.put("Title",mtitle);
 				mPosts.put("Content",mcontent);
 				mPosts.put("Score", 0);
+				mPosts.put("Index",index);
+				//pull current index
+				//check index
+				//increase master index by 1
+				//set post to index
 				ParseUser currentUser = ParseUser.getCurrentUser();
 				mPosts.put("Author",currentUser.getUsername());
 				Calendar rightNow = Calendar.getInstance();
@@ -96,5 +103,21 @@ public class PostScreen extends Activity  {
 		return true;
 	}
 	
+	public void getIndex()
+	{
+		ParseQuery<ParseObject> query = ParseQuery.getQuery("Posts");
+		query.getInBackground("DLTQz4O4nr", new GetCallback<ParseObject>() {
+		  public void done(ParseObject object, ParseException e) {
+		    if (e == null) {
+		      index = object.getInt("Index");
+		      object.increment("Index");
+		      object.saveInBackground();
+		      index++;
+		    } else {
+		      // something went wrong
+		    }
+		  }
+		});
+	}
 
 }
