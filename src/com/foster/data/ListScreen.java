@@ -88,8 +88,10 @@ public class ListScreen extends Activity {
 	@Override
 	protected void onResume()
 	{
-		super.onResume();
+		//might need to fix this at one point in order to update scores.
 		/*
+		super.onResume();
+		
 		Intent intent = getIntent();
 		String temp = intent.getStringExtra(Profile.EXTRA_DECISION);
 		if(temp != null)
@@ -107,11 +109,11 @@ public class ListScreen extends Activity {
 				getPosts();	
 			else if(temp.equals("newPosts"))
 				getNewPosts();
-			else if (temp.equals("randomPosts"))
-				getRandomPosts();
+			//else if (temp.equals("randomPosts"))
+			//	getRandomPosts();
 		}
-		*/
 		
+		*/
 	}
 	//Use this class for displaying lists
 
