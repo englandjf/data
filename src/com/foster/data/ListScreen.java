@@ -40,7 +40,8 @@ public class ListScreen extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_list_screen);
-		/*
+		getHighIndex();
+		
 		Intent intent = getIntent();
 		String temp = intent.getStringExtra(Profile.EXTRA_DECISION);
 		if(temp != null)
@@ -52,8 +53,17 @@ public class ListScreen extends Activity {
 			displayUserPosts();
 		}
 		else
-			getPosts();	
-			*/
+		{
+			temp = intent.getStringExtra(ToList.EXTRA_DECISION);
+			if(temp.equals("top10"))
+				getPosts();	
+			else if(temp.equals("newPosts"))
+				getNewPosts();
+			else if (temp.equals("randomPosts"))
+				getRandomPosts();
+		}
+		
+
 	}
 
 	@Override
@@ -79,6 +89,7 @@ public class ListScreen extends Activity {
 	protected void onResume()
 	{
 		super.onResume();
+		/*
 		Intent intent = getIntent();
 		String temp = intent.getStringExtra(Profile.EXTRA_DECISION);
 		if(temp != null)
@@ -99,6 +110,7 @@ public class ListScreen extends Activity {
 			else if (temp.equals("randomPosts"))
 				getRandomPosts();
 		}
+		*/
 		
 	}
 	//Use this class for displaying lists
@@ -249,7 +261,7 @@ public class ListScreen extends Activity {
 	//WONT RETURN ANYTHING WHEN USING AN ARRAY!!!
 	public void getRandomPosts()
 	{
-		getHighIndex();
+		//getHighIndex();
 		ParseQuery<ParseObject> query = ParseQuery.getQuery("Posts");
 		//Log.i("test","Retrieved ");
 		query.setLimit(10);
