@@ -1,9 +1,10 @@
 package com.foster.data;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Random;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.parse.FindCallback;
+import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -30,6 +32,7 @@ public class ListScreen extends Activity {
 	public final static String EXTRA_AUTHOR = "com.foster.data.AUTHOR";
 	public final static String EXTRA_TITLE = "com.foster.data.TITLE";
 	public final static String EXTRA_ID = "com.foster.data.ID";
+	private int index = -1;
 	private ListView mlistView;
 	private ArrayAdapter mAdapter;
 
@@ -96,6 +99,7 @@ public class ListScreen extends Activity {
 			else if (temp.equals("randomPosts"))
 				getRandomPosts();
 		}
+		
 	}
 	//Use this class for displaying lists
 
@@ -242,12 +246,28 @@ public class ListScreen extends Activity {
 		});
 	}
 	
-	
+	//WONT RETURN ANYTHING WHEN USING AN ARRAY!!!
 	public void getRandomPosts()
 	{
+		getHighIndex();
 		ParseQuery<ParseObject> query = ParseQuery.getQuery("Posts");
+		//Log.i("test","Retrieved ");
 		query.setLimit(10);
-		//query.orderByDescending("Day");
+		//get highest index number(index)
+		Random generator = new Random();
+		//int[] randomNumbers = new int[10];
+		List<Integer> randomList = new ArrayList<Integer>();
+		Log.i("Before","Loop" + index);
+		for(int i = 0;i < 10; i++)
+		{
+			int temp = generator.nextInt(index) + 1;
+			randomList.add(temp);
+			Log.i("In","Loop" + temp);
+		}
+		//get 10 random numbers, use for loop 
+		Log.i("After","Loop");
+		//randomList.add(2);
+		query.whereContainedIn("Index", randomList);
 		query.findInBackground(new FindCallback<ParseObject>() {
 			public void done(List<ParseObject> objects, ParseException e) {
 				if(e == null){
@@ -310,6 +330,30 @@ public class ListScreen extends Activity {
 		startActivity(intent);	
 	}
 
+	public void getHighIndex()
+	{
+		ParseQuery<ParseObject> query = ParseQuery.getQuery("Posts");
+		try {
+			ParseObject temp = query.get("DLTQz4O4nr");
+			index = temp.getInt("Index");
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		/*
+		query.getInBackground("DLTQz4O4nr", new GetCallback<ParseObject>() {
+		  public void done(ParseObject object, ParseException e) {
+		    if (e == null) {
+		      index = object.getInt("Index");
+		      Log.i("Index","" + index);
+		    } else {
+		      // something went wrong
+		    }
+		  }
+		});
+		*/
+	}
+
 
 	/*
 	public int scoreCheck(){
@@ -334,7 +378,7 @@ public class ListScreen extends Activity {
 			});
 			specialNumber++;
 		}
-		return specialNumber;
+		
 	}
 	*/
 
