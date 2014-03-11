@@ -327,7 +327,10 @@ public class ListScreen extends Activity {
 				Log.i("Author"," "+authors[position]);
 				//Removes score element
 				String temp = postTitle[position];
-				String temp2 = temp.substring(0, temp.length()-3);
+				int tempCount = temp.indexOf('(');
+				tempCount = temp.length()-tempCount;
+				String temp2 = temp.substring(0, temp.length()-tempCount);
+				//String temp2 = temp.substring(0, temp.length()-3);
 				displayContent(postContent[position],postScore[position],authors[position],temp2,postID[position]);				
 			}			
 		});		
