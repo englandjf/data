@@ -89,9 +89,9 @@ public class ListScreen extends Activity {
 	protected void onResume()
 	{
 		//might need to fix this at one point in order to update scores.
-		/*
+		//
 		super.onResume();
-		
+		/*
 		Intent intent = getIntent();
 		String temp = intent.getStringExtra(Profile.EXTRA_DECISION);
 		if(temp != null)

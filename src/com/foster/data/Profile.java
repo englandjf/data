@@ -43,6 +43,7 @@ public class Profile extends Activity {
 				}
 			});				
 		}
+		//
 		else
 		{
 			totalPosts.setText("No posts found");

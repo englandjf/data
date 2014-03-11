@@ -87,7 +87,7 @@ public class PostScreen extends Activity  {
 		});
 		
 	}
-	
+	//
 
 	
 	public void toHomeScreen()
